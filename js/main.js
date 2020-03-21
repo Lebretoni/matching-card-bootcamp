@@ -7,31 +7,45 @@ const pair3 = document.querySelectorAll(".cardThree");
 const pair4 = document.querySelectorAll(".cardFour");
 const pair5 = document.querySelectorAll(".cardFive");
 const tds = document.querySelectorAll('TD');
-const img1 = "url('images/block.png') center /100%";
-const img2 = "url('images/mario.jpg') center /100%";
+const card = {
+  back: "url('images/pikachu.png') center /100%",
+  front: "url('images/goku.png') center /100%"
+};
+const item = {
+  vegito: "url('images/vegito.png')no-repeat center /75%",
+  gogeta: "url('images/gogeta.png') no-repeat center /80%",
+  gohan: "url('images/gohan.png') no-repeat center /80%",
+  trunks: "url('images/trunks.png') no-repeat center /100%",
+  vegeta: "url('images/vegeta.png') no-repeat center /80%"
+  // feather: "url('images/vegito.png')no-repeat center /75%",
+  // boo: "url('images/gogeta.png') no-repeat center /80%",
+  // flower: "url('images/gohan.png') no-repeat center /80%",
+  // egg: "url('images/trunks.png') no-repeat center /100%",
+  // mush: "url('images/vegeta.png') no-repeat center /80%"
+};
 
 //Functions that return cards to 'item blocks' if they do not match and change background color of td card pairs on-click.
-const flipCard = (pairs, image) => {
+const flipCard = (pairs, img) => {
   pairs.forEach((td) =>{
-         td.style.background = image;
+         td.style.background = img;
        });
      };
 
-const revealColor = (pairs, color) => {
+const revealPowerUp = (pairs, item) => {
   pairs.forEach((td) =>{
     td.addEventListener('click', (event) =>{
-         td.style.background = color;
+         td.style.background = item;
          setTimeout(cardsMatch, 1800);
          setTimeout(cardsDontMatch, 1800);
        });
      });
    };
 
-revealColor(pair1, "red");
-revealColor(pair2, "blue");
-revealColor(pair3, "yellow");
-revealColor(pair4, "green");
-revealColor(pair5, "purple");
+revealPowerUp(pair1, item.vegito);
+revealPowerUp(pair2, item.gogeta);
+revealPowerUp(pair3, item.gohan);
+revealPowerUp(pair4, item.trunks);
+revealPowerUp(pair5, item.vegeta);
 
 //Function that checks if the cards do not match.
 const cardsDontMatch = () => {
@@ -53,73 +67,73 @@ const cardsDontMatch = () => {
   const firstCard = document.getElementById(cardPairs[0]).style.background;
   const secondCard = document.getElementById(cardPairs[1]).style.background;
 
-    if(firstCard === "red" && secondCard === "blue"){
-     flipCard(pair1, img1);
-     flipCard(pair2, img1);
-  }else if(firstCard === "red" && secondCard === "yellow"){
-    flipCard(pair1, img1);
-    flipCard(pair3, img1);
-  }else if(firstCard === "red" && secondCard === "green"){
-    flipCard(pair1, img1);
-    flipCard(pair4, img1);
-  }else if(firstCard === "red" && secondCard === "purple"){
-    flipCard(pair1, img1);
-    flipCard(pair5, img1);
-  }else if (firstCard === "blue" && secondCard === "red"){
-    flipCard(pair2, img1);
-    flipCard(pair1, img1);
-  }else if(firstCard === "blue" && secondCard === "yellow"){
-    flipCard(pair2, img1);
-    flipCard(pair3, img1);
-  }else if(firstCard === "blue" && secondCard === "green"){
-    flipCard(pair2, img1);
-    flipCard(pair4, img1);
-  }else if(firstCard === "blue" && secondCard === "purple"){
-    flipCard(pair2, img1);
-    flipCard(pair5, img1);
-  }else if (firstCard === "yellow" && secondCard === "red"){
-    flipCard(pair3, img1);
-    flipCard(pair1, img1);
-  }else if(firstCard === "yellow" && secondCard === "blue"){
-    flipCard(pair3, img1);
-    flipCard(pair2, img1);
-  }else if(firstCard === "yellow" && secondCard === "green"){
-    flipCard(pair3, img1);
-    flipCard(pair4, img1);
-  }else if(firstCard === "yellow" && secondCard === "purple"){
-    flipCard(pair3, img1);
-    flipCard(pair5, img1);
-  }else if (firstCard === "green" && secondCard === "red"){
-    flipCard(pair4, img1);
-    flipCard(pair1, img1);
-  }else if(firstCard === "green" && secondCard === "blue"){
-    flipCard(pair4, img1);
-    flipCard(pair2, img1);
-  }else if(firstCard === "green" && secondCard === "yellow"){
-    flipCard(pair4, img1);
-    flipCard(pair3, img1);
-  }else if(firstCard === "green" && secondCard === "purple"){
-    flipCard(pair4, img1);
-    flipCard(pair5, img1);
-  }else if (firstCard === "purple" && secondCard === "red"){
-    flipCard(pair5, img1);
-    flipCard(pair1, img1);
-  }else if(firstCard === "purple" && secondCard === "blue"){
-    flipCard(pair5, img1);
-    flipCard(pair2, img1);
-  }else if(firstCard === "purple" && secondCard === "yellow"){
-    flipCard(pair5, img1);
-    flipCard(pair3, img1);
-  }else if(firstCard === "purple" && secondCard === "green"){
-    flipCard(pair5, img1);
-    flipCard(pair4, img1);
+    if(firstCard.includes('vegito') && secondCard.includes('gogeta')){
+     flipCard(pair1, card.back)
+     flipCard(pair2, card.back);
+  }else if(firstCard.includes('vegito') && secondCard.includes('gohan')){
+    flipCard(pair1, card.back);
+    flipCard(pair3, card.back);
+  }else if(firstCard.includes('vegito') && secondCard.includes('trunks')){
+    flipCard(pair1, card.back);
+    flipCard(pair4, card.back);
+  }else if(firstCard.includes('vegito') && secondCard.includes('vegeta')){
+    flipCard(pair1, card.back);
+    flipCard(pair5, card.back);
+  }else if (firstCard.includes('gogeta') && secondCard.includes('vegito')){
+    flipCard(pair2, card.back);
+    flipCard(pair1, card.back);
+  }else if(firstCard.includes('gogeta') && secondCard.includes('gohan')){
+    flipCard(pair2, card.back);
+    flipCard(pair3, card.back);
+  }else if(firstCard.includes('gogeta') && secondCard.includes('trunks')){
+    flipCard(pair2, card.back);
+    flipCard(pair4, card.back);
+  }else if(firstCard.includes('gogeta') && secondCard.includes('vegeta')){
+    flipCard(pair2, card.back);
+    flipCard(pair5, card.back);
+  }else if (firstCard.includes('gohan') && secondCard.includes('vegito')){
+    flipCard(pair3, card.back);
+    flipCard(pair1, card.back);
+  }else if(firstCard.includes('gohan') && secondCard.includes('gogeta')){
+    flipCard(pair3, card.back);
+    flipCard(pair2, card.back);
+  }else if(firstCard.includes('gohan') && secondCard.includes('trunks')){
+    flipCard(pair3, card.back);
+    flipCard(pair4, card.back);
+  }else if(firstCard.includes('gohan') && secondCard.includes('vegeta')){
+    flipCard(pair3, card.back);
+    flipCard(pair5, card.back);
+  }else if(firstCard.includes('trunks') && secondCard.includes('vegito')){
+    flipCard(pair4, card.back);
+    flipCard(pair1, card.back);
+  }else if(firstCard.includes('trunks') && secondCard.includes('gogeta')){
+    flipCard(pair4, card.back);
+    flipCard(pair2, card.back);
+  }else if(firstCard.includes('trunks') && secondCard.includes('gohan')){
+    flipCard(pair4, card.back);
+    flipCard(pair3, card.back);
+  }else if(firstCard.includes('trunks') && secondCard.includes('vegeta')){
+    flipCard(pair4, card.back);
+    flipCard(pair5, card.back);
+  }else if (firstCard.includes('vegeta') && secondCard.includes('vegito')){
+    flipCard(pair5, card.back);
+    flipCard(pair1, card.back);
+  }else if(firstCard.includes('vegeta') && secondCard.includes('gogeta')){
+    flipCard(pair5, card.back);
+    flipCard(pair2, card.back);
+  }else if(firstCard.includes('vegeta') && secondCard.includes('gohan')){
+    flipCard(pair5, card.back);
+    flipCard(pair3, card.back);
+  }else if(firstCard.includes('vegeta') && secondCard.includes('trunks')){
+    flipCard(pair5, card.back);
+    flipCard(pair4, card.back);
     };
   };
 };
 
-//Fuction that checks if the cards match.
+//Fuction that checks if the cards do match.
 const cardsMatch = () => {
-  const match = [[1, 2],[3, 4], [5, 6],  [7, 8], [9, 10]]
+  const match = [[1, 2],[3, 4], [5, 6], [7, 8], [9, 10]]
 
   for(let i = 0; i < match.length; i++){
   const cardPairs = match[i];
@@ -127,16 +141,16 @@ const cardsMatch = () => {
   const firstCard = document.getElementById(cardPairs[0]).style.background;
   const secondCard = document.getElementById(cardPairs[1]).style.background;
 
-  if (firstCard === "red" && secondCard === "red"){
-    flipCard(pair1, img2);
-  }else if(firstCard === "blue" && secondCard === "blue"){
-    flipCard(pair2, img2);
-  }else if( firstCard === "green" && secondCard === "green"){
-    flipCard(pair4, img2);
-  }else if( firstCard === "yellow" && secondCard === "yellow"){
-    flipCard(pair3, img2);
-  }else if( firstCard === "purple" && secondCard === "purple"){
-    flipCard(pair5, img2);
+  if (firstCard.includes('vegito') && secondCard.includes('vegito')){
+    flipCard(pair1, card.front);
+  }else if(firstCard.includes('gogeta') && secondCard.includes('gogeta')){
+    flipCard(pair2, card.front);
+  }else if( firstCard.includes('gohan') && secondCard.includes('gohan')){
+    flipCard(pair3, card.front);
+  }else if( firstCard.includes('trunks') && secondCard.includes('trunks')){
+    flipCard(pair4, card.front);
+  }else if( firstCard.includes('vegeta') && secondCard.includes('vegeta')){
+    flipCard(pair5, card.front);
     };
   };
 };
@@ -144,6 +158,6 @@ const cardsMatch = () => {
 //Reset button (Mario is the button)
 document.querySelector("button").addEventListener('click', () =>{
       tds.forEach((td) =>{
-      td.style.background = img1;
+    td.style.background = card.back;
   })
 })
